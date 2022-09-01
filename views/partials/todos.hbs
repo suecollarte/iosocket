@@ -1,0 +1,22 @@
+<div id="historial">
+    
+    <h1> Productos </h1>
+{{#if PRODUCTO_DB}}
+{{#each PRODUCTO_DB}}
+ <div class="table-responsive">
+        <table class="table table-dark">
+            <tr style="color: yellow;"> <th>Nombre</th> <th>Precio</th> <th>Imagen</th> </tr>
+            <!-- filas -->
+    <tr> 
+        <td> {{this.nombre}}</td>
+        <td> {{this.precio}}</td>
+        <td> <img width="30" src="{{this.thumbail}}" ></td>
+    </tr>
+    {{/each}}
+{{else}}
+<h2>No se encuentran</h2>
+{{/if}}
+
+</div>
+
+
