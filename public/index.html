@@ -9,26 +9,51 @@
 </head>
 <body>
     <div class="container m-5">
-        <h3>Chat WebSocket!</h3>
+        <h3>Producto</h3>
         <form>
+            
             <div class="form-group">
-                <label for="user">Usuario:</label>
-                <input type="text" class="form-control" id="user" aria-describedby="userComment">
-                <small id="userComment" class="form-text text-muted">Usuario que se utilizara al enviar mensajes.</small>
+                <label for="producto">Producto</label>
+                <input type="text" class="form-control" id="producto" aria-describedby="userComment">
+                <small id="userComment" class="form-text text-muted">Producto que se utilizara al enviarlo.</small>
             </div>
             <div class="form-group">
-                <label for="contenidoMensaje">Mensaje:</label>
-                <textarea class="form-control" id="contenidoMensaje" rows="3"></textarea>
-            </div>    
-            <button class="btn btn-success" onclick="enviarMensaje()">Enviar</button>
+                <label for="precio">Precio:</label>
+                <input type="text"  class="form-control" id="precio" ></input>
+            </div>  
+            <div class="form-group">
+                <label for="thumbail">Link Imagen:</label>
+                <input type="text"  class="form-control" id="thumbail" ></input>
+            </div>   
+            <button class="btn btn-success" onclick="enviarProducto()">Enviar</button>
         </form>
         <hr>
+        <h1>Listado de Productos</h1>
         <div id="historial">
-            <!-- aqui se renderizan los mensajes recibidos por parte del server -->
+        </div>
+<hr>
+        <h1>Centro de Mensajes</h1>
+        <form>
+            <div class="form-group">
+                <label for="mail">email</label>
+                <input type="text" class="form-control" id="email" aria-describedby="userComment">
+                <small id="userComment" class="form-text text-muted">Mail que se utilizara al enviarlo.</small>
+           </div>
+           <div class="form-group">
+                <label for="mensaje">mens</label>
+                <input type="text" class="form-control" id="mens" aria-describedby="userComment">
+                <input type="hidden" id="fecha" value="03-12-2022">
+            </div>
+            <button class="btn btn-success" onclick="enviarMensaje()">Registro</button>
+        </form>
+        
+        <div id="mensaje">
         </div>
     </div>
 
+    <div id="from-server-producto"></div>
+    <div id="from-server-mensaje"></div>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/public/main.js"></script>
+    <script src="./main.js"></script>
 </body>
 </html>
