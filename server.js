@@ -28,7 +28,11 @@ app.set('view engine', 'hbs');
 
 
 //BD
-const MENSAJE_DB=[];
+const MENSAJE_DB=[ {
+  "email": "xxxx@fff.cl",
+  "mens":"Hola a todos",
+  "fecha": "01-09-22 23:05",
+}];
 const PRODUCTO_DB=[
     {
       "nombre": "Escuadra",
@@ -51,9 +55,14 @@ const PRODUCTO_DB=[
   
 /* ---------------------- Rutas ----------------------*/
 app.get('/', (req, res) => {
-   res.sendFile(path.join(__dirname, './views/layouts', 'main.hbs'));
-   //res.render('productos',{PRODUCTO_DB});
+   //res.sendFile(path.join(__dirname, './public', 'index.html'));
+   res.render('productos',{PRODUCTO_DB});
 });
+app.post('/productos',(req,res)=>{
+  MENSAJE_DB.push(req.body);
+  res.redirect('/');
+  io.sockets.emit('from-server-mensaje', req.body);
+})
 
 
 /* ---------------------- Servidor ----------------------*/
@@ -67,18 +76,21 @@ io.on('connection', (socket)=>{
 
     console.log(`Nuevo cliente conectado! ${socket.id}`);
     socket.emit('from-server-producto', {PRODUCTO_DB});
+    socket.emit('from-server-mensaje', {MENSAJE_DB});
 
     socket.on('from-client-producto', producto => {
-      
         PRODUCTO_DB.push(producto);
+
         io.sockets.emit('from-server-producto', {PRODUCTO_DB});
     
     });
     socket.on('from-client-mensaje', mensaje => {
-      
-      MENSAJE_DB.push(mensaje);
+     MENSAJE_DB.push(mensaje);
+     //console.log(MENSAJE_DB);
       io.sockets.emit('from-server-mensaje', {MENSAJE_DB});
+     
   
   });
 
 })
+
