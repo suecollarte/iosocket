@@ -15,7 +15,7 @@ function render(productos) {
      return (`<span>
      <b>${prod.nombre}: </b>
      <span>${prod.precio}</span> 
-     <span><img src="${prod.thumbail}" width="50px"></span>`)
+     <span><img src="${prod.imagenProd}" width="50px"></span>`)
     }).join('<br>'); 
     document.querySelector('#historial').innerHTML = HistoriaProd;
 }
@@ -24,38 +24,38 @@ function render2(mensaje) {
         return (`<span style='color:blue;'>
         <b>${msj.email}: </b>
         <span style='color:#804000;'>${msj.fecha}</span>
-        <span style='color:green;font-style: italic;'>${msj.mens} </span>`)
+        <span style='color:green;font-style: italic;'>${msj.mesj} </span>`)
     }).join('<br>'); 
-    //console.log(HistoriaMsj);  
-    document.querySelector('#mensaje').innerHTML = HistoriaMsj;
+    document.querySelector('#mensajes').innerHTML = HistoriaMsj;
 }
 function enviarProducto() {
-    //alert('se apreto opcion');
-    const inputProducto = document.querySelector('#producto');
+   
+    const inputProducto = document.querySelector('#nombre');
     const inputPrecio = document.querySelector('#precio');
-    const inputThumbail = document.querySelector('#thumbail');
+    const inputThumbail = document.querySelector('#imagenProd');
 
-
-    const producto = {
+ 
+    const Fproducto = {
         nombre: inputProducto.value,
         precio: inputPrecio.value,
-        thumbail : inputThumbail.value
+        imagenProd : inputThumbail.value
     }
 
-    socket.emit('from-client-producto', producto);
+   socket.emit('from-client-producto', Fproducto);
 }
 function enviarMensaje() {
-    alert('se apreto opcion mensaje');
-   
-    const inputEmail = document.querySelector('#email');
-    //document.getElementbyId('fecha').value =Date.now() ;
+    
+    const inputMsj = document.querySelector('#mesj');
+
+    const inputEmail = document.querySelector('#email');  
+   //document.getElementbyId('fecha').value =Date.now() ;
     const inputFecha = document.querySelector('#fecha');
-    alert (inputFecha.value);
     
     const usuarios = {
         email: inputEmail.value,
-        fecha: inputFecha.value
+        mesj: inputMsj.value,
+        fecha: inputFecha.value 
     }
-console.log(usuarios);
+    
     socket.emit('from-client-mensaje', usuarios);
 }
