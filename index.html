@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat WebSocket!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container m-5">
+        <h3>Producto</h3>
+        <form id="form-producto" class=" card card-body" >
+            
+            <div class="form-group">
+                <label for="nombre">Producto</label>
+                <input type="text" class="form-control" id="nombre" aria-describedby="userComment">
+                <small id="userComment" class="form-text text-muted">Producto que se utilizara al enviarlo.</small>
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio:</label>
+                <input type="text"  class="form-control" id="precio" ></input>
+            </div>  
+            <div class="form-group">
+                <label for="descrProducto">Descripcion</label>
+                <input type="text"  class="form-control" id="descrProducto" ></input>
+            </div>  
+            <div class="form-group">
+                <label for="imagenProd">Link Imagen:</label>
+                <input type="text"  class="form-control" id="imagenProd" ></input>
+            </div>  
+            <input type="hidden" id="idProducto">
+ 
+            <button class="btn btn-success" onclick="enviarProducto()">Enviar</button>
+        </form>
+        <hr>
+        <h1>Listado de Productos</h1>
+        <div id="historial">
+        </div>
+<hr>
+        <h1>Centro de Mensajes</h1>
+        <form >
+            <div class="form-group">
+                <label for="mail">email</label>
+                <input type="text" class="form-control" id="email" name="email" aria-describedby="userComment">
+                <small id="userComment" class="form-text text-muted">Mail que se utilizara al enviarlo.</small>
+           </div>
+           <div class="form-group">
+                <label for="mesj">mensajes</label>
+                <input type="text" class="form-control" id="mesj" name="mesj" aria-describedby="userComment">
+                <small id="userComment" class="form-text text-muted">Su mensaje.</small>
+
+            </div> 
+            <input type="hidden" id="fecha" name="fecha" value="03-12-2022">
+            <button class="btn btn-success" onclick="enviarMensaje()">Registro</button>
+        </form>
+        
+        <div id="mensajes">
+        </div>
+    </div>
+
+    <div id="from-server-producto"></div>
+    <div id="from-server-mensaje"></div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
